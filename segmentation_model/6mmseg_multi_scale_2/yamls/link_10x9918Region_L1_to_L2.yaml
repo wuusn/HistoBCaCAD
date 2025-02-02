@@ -1,0 +1,6 @@
+linkFromL1ToL2:
+    funName: linkAllFilesFromSrcToTarL2
+    src_dir: /raid10/_datasets/Breast/QiLu/10xRegion9918
+    tar_dir: /ssd/Breast/10xRegion9918L2
+    split: '-'
+    idxs: 0

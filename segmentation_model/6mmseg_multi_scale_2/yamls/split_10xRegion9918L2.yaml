@@ -1,0 +1,5 @@
+10xRegion9918:
+    src_dir: /ssd/Breast/9918_10x512_mask_random40
+    tar_dir: /ssd/Breast/split_L1_10x512_mask_Region9918
+    src_ext: .jpg
+    mask_ext: .png

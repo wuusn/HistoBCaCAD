@@ -1,0 +1,15 @@
+fromNormalKfb:
+    function: wsi2PatchFromMaskOnInOut
+    src_dir: /raid10/_datasets/Breast/QiLu/NonTumor
+    src_ext: .kfb
+    tar_dir: /raid10/10x512NormalPatchOut
+    tar_ext: .jpg
+    mask_dir: /raid10/_datasets/Breast/QiLu/kfb_normal_results
+    mask_ext: _pred.png
+    max_mag: 40
+    mask_mag: 2.5
+    curr_mag: 10
+    saveWithMask: True
+    size: 512
+    groupByName: True
+    #debug: True

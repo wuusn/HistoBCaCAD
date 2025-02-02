@@ -1,0 +1,16 @@
+from10xRegion9918:
+    function: wsi2PatchRandomInMask
+    src_dir: /raid10/_datasets/Breast/QiLu/10xRegion9918
+    src_ext: .jpg
+    tar_dir: /ssd/Breast/9918_10x512_mask_random40
+    tar_ext: .jpg
+    mask_dir: /raid10/_datasets/Breast/QiLu/10xRegion9918
+    mask_ext: .png
+    max_mag: 10
+    mask_mag: 10
+    curr_mag: 10
+    size: 512
+    ratio: 40
+    groupByName: True
+    saveWithMask: True
+    #debug: True
