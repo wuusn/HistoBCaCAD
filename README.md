@@ -75,7 +75,54 @@ Use the following scripts/notebooks as the primary entrypoints:
 
 ---
 
-## 4) Suggested end-to-end workflow (reproducibility guide)
+## 4) Reproducible environment setup
+
+This repository currently uses **two environment tracks**:
+
+1. **Segmentation environment (inside `segmentation_model/`)**
+2. **Non-segmentation environment (root-level, used by SSL / patch / ROI / WSI workflows)**
+
+### 4.1 Segmentation model environment
+
+Environment files for segmentation are in the subfolder:
+- Conda: `segmentation_model/environment_conda.yml`
+- Pip: `segmentation_model/requirements.txt`
+
+Recommended setup:
+
+```bash
+# from repo root
+conda env create -f segmentation_model/environment_conda.yml
+conda activate mmseg
+pip install -r segmentation_model/requirements.txt
+```
+
+Then run segmentation inference via:
+
+```bash
+bash segmentation_model/run_wsi_infer.sh
+```
+
+### 4.2 Root environment for the rest of the pipeline
+
+For SSL finetuning, LoRA/patch training/testing, ROI feature extraction, and ROI/WSI MIL notebooks, use root-level environment files:
+- Conda: `environment_conda.yml`
+- Pip: `requirements_pip.txt`
+
+Recommended setup:
+
+```bash
+# from repo root
+conda env create -f environment_conda.yml
+conda activate histosslscaling
+pip install -r requirements_pip.txt
+```
+
+> If your local environment name differs, keep using the environment name defined in your local conda file.
+
+---
+
+## 5) Suggested end-to-end workflow (reproducibility guide)
 
 The recommended execution order is:
 
@@ -102,14 +149,15 @@ The recommended execution order is:
 
 ---
 
-## 5) Practical notes
+## 6) Practical notes
 
 - Keep file names and paths unchanged to ensure compatibility with existing scripts/notebooks.
 - If you only need inference/evaluation, download required checkpoints first (local `mil_models/` and/or Hugging Face weights).
 - Prefer running each module from the project root unless module-specific instructions indicate otherwise.
+- Use the segmentation environment for `segmentation_model/*` tasks and the root environment for the remaining modules.
 
 ---
 
-## 6) Citation / publication status
+## 7) Citation / publication status
 
 The study manuscript metadata and full abstract details can be updated here after publication.
