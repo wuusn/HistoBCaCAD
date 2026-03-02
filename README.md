@@ -20,10 +20,10 @@ This repository contains the codebase used for the HistoBCaCAD pipeline, includi
   Self-supervised learning (SSL) finetuning code (iBOT-based workflow).
 
 - `d_swin_4_multi_task/`  
-  Multi-task patch-level model training/testing, including LoRA finetuning and patch-level comparison/testing.
+  Multi-task patch-level model training/testing, including LoRA finetuning and patch-level comparison/testing, feature extraction.
 
 - `HistoSSLscaling/`  
-  ROI feature extraction and MIL training/testing notebooks/scripts for ROI-level and WSI-level prediction.
+  MIL training/testing notebooks/scripts for ROI-level and WSI-level prediction.
 
 - `mil_models/`  
   Local storage location for ROI and WSI MIL model artifacts/checkpoints.
@@ -54,7 +54,7 @@ Use the following scripts/notebooks as the primary entrypoints:
 - **Purpose:** Evaluate patch-level model performance and run comparison testing.
 
 ### E. ROI feature extraction
-- **Notebook:** `HistoSSLscaling/extract_roi_features.ipynb`
+- **Notebook:** `d_swin_4_multi_task/lora_feature_extraction.py`
 - **Purpose:** Extract ROI features used by downstream MIL models.
 
 ### F. ROI-level MIL training (legacy)
@@ -123,6 +123,7 @@ pip install -r requirements_pip.txt
 > If your local environment name differs, keep using the environment name defined in your local conda file.
 
 ### 4.3 Original projects used in this work
+To reproduce the environment, we kept most of the files from the original projects at the time we ran the experiments.
 Some of the code or environments might be out of date. Please also check these original repos used in our project:  
 [mmsegmentation](https://github.com/open-mmlab/mmsegmentation)  
 [mmpretrain](https://github.com/open-mmlab/mmpretrain)  
@@ -139,6 +140,7 @@ Some of the code or environments might be out of date. Please also check these o
 ```bash
 python HistoSSLscaling/example_roi_inference.py --ibot_weights /path/to/ibot_vit_base_pancan.pth
 ```
+with our feature extraction:
 ```bash
 python HistoSSLscaling/example_roi_inference.py --encoder_ckpt /path/to/model-13_ft_lora.pth  --ibot_weights /home/yuxin/Downloads/ibot_vit_base_pancan.pth
 ```
@@ -160,7 +162,7 @@ The recommended execution order is:
    Use `d_swin_4_multi_task/test_compare.py`.
 
 5. **Extract ROI features**  
-   Run `HistoSSLscaling/extract_roi_features.ipynb`.
+   Run `d_swin_4_multi_task/lora_feature_extraction.py`.
 
 6. **Train ROI MIL model**
    Run `HistoSSLscaling/legacy/mil_roi_model_on_the_fly_lora.ipynb`.
