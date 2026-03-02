@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 """Run ROI inference on bundled example ROIs using the bundled ROI MIL weights.
 
-This is a thin wrapper around ``HistoSSLscaling/roi_lora_infer.py`` and mirrors
-how ``mil_roi_model_on_the_fly_lora.ipynb`` performs ROI feature extraction + MIL
-classification.
-
-Example:
-    python HistoSSLscaling/example_roi_inference.py \
-      --ibot_weights /path/to/ibot_vit_base_pancan.pth
-
-Optional LoRA encoder checkpoint:
     python HistoSSLscaling/example_roi_inference.py \
       --ibot_weights /path/to/ibot_vit_base_pancan.pth \
       --encoder_ckpt /path/to/model-13.pth
@@ -69,7 +60,7 @@ def main() -> None:
     if args.encoder_ckpt is not None and not args.encoder_ckpt.exists():
         raise FileNotFoundError(f"Cannot find encoder checkpoint: {args.encoder_ckpt}")
 
-    out_dir = args.out_dir or repo_root / "outputs" / f"example_roi_infer_{time.strftime('%Y%m%d_%H%M%S')}"
+    out_dir = args.out_dir or repo_root / "work_dirs" / f"example_roi_infer_{time.strftime('%Y%m%d_%H%M%S')}"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     example_csv = out_dir / "example_input.csv"

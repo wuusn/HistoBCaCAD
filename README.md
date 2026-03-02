@@ -72,6 +72,7 @@ Use the following scripts/notebooks as the primary entrypoints:
 - **ROI and WSI MIL models:** stored in this repository under `mil_models/`.
 - **Patch model + segmentation model:** hosted on Hugging Face:  
   https://huggingface.co/yuxinwu/histobcacad/tree/main
+- Some scripts may need pretrained Phikon model weight to initialize, [download here](https://drive.google.com/drive/folders/1wIrLw4KZa8oI3hZVykH1dyvXu08_WwmL?usp=drive_link).  
 
 ---
 
