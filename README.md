@@ -1,19 +1,115 @@
-# Foundation Model-powered Computer-aided Diagnosis System to Assist Multi-task Histopathological Diagnosis in Breast Cancer: An International Multicenter Retrospective and Prospective Diagnostic Study
+# Foundation Model-powered Computer-aided Diagnosis System to Assist Multi-task Histopathological Diagnosis in Breast Cancer
 
-## Abstract
-will be updated after publication
+This repository contains the codebase used for the HistoBCaCAD pipeline, including:
+- Whole-slide tissue segmentation,
+- Self-supervised foundation model finetuning,
+- Multi-task patch-level finetuning/testing,
+- ROI feature extraction and MIL-based ROI/WSI modeling.
 
-## Segmentation Model
-check folder `segmentation_model`
+> **Status note**
+> This README is focused on practical usage and reproducibility of the current repository layout. File names and paths below match the current codebase.
 
-## Foundation Model Finetuning
-check folder `ibot_finetune`
+---
 
-## Multi-task Finetuning
-check folder `multi_task_finetune`
+## 1) Repository structure (what each module is for)
 
-## Breast Cancer CAD
-check folder `bca_models`
+- `segmentation_model/`  
+  WSI segmentation code and inference entrypoint.
 
-## Weights
-The weights will be available after publication.
+- `ssl_finetune/`  
+  Self-supervised learning (SSL) finetuning code (iBOT-based workflow).
+
+- `d_swin_4_multi_task/`  
+  Multi-task patch-level model training/testing, including LoRA finetuning and patch-level comparison/testing.
+
+- `HistoSSLscaling/`  
+  ROI feature extraction and MIL training/testing notebooks/scripts for ROI-level and WSI-level prediction.
+
+- `mil_models/`  
+  Local storage location for ROI and WSI MIL model artifacts/checkpoints.
+
+- `example_rois/`  
+  Example ROI data for quick experimentation.
+
+---
+
+## 2) Main entrypoints
+
+Use the following scripts/notebooks as the primary entrypoints:
+
+### A. Segmentation inference
+- **Script:** `segmentation_model/run_wsi_infer.sh`
+- **Purpose:** Run WSI inference for the segmentation model.
+
+### B. SSL foundation model finetuning
+- **Script:** `ssl_finetune/main_ibot.py`
+- **Purpose:** Main training/finetuning entrypoint for SSL (iBOT) model adaptation.
+
+### C. LoRA finetuning (multi-task patch model)
+- **Script:** `d_swin_4_multi_task/train_lora_with_ft.py`
+- **Purpose:** Train/fine-tune the patch multi-task model with LoRA.
+
+### D. Patch-level testing/comparison
+- **Script:** `d_swin_4_multi_task/test_compare.py`
+- **Purpose:** Evaluate patch-level model performance and run comparison testing.
+
+### E. ROI feature extraction
+- **Notebook:** `HistoSSLscaling/extract_roi_features.ipynb`
+- **Purpose:** Extract ROI features used by downstream MIL models.
+
+### F. ROI-level MIL training
+- **Notebook:** `HistoSSLscaling/mil_roi_model_on_the_fly_lora.ipynb`
+- **Purpose:** Train ROI-level MIL models (with on-the-fly LoRA workflow).
+
+### G. WSI-level MIL training/testing
+- **Notebook:** `HistoSSLscaling/mil_wsi_model_on_the_fly_lora.ipynb`
+- **Purpose:** Train and test WSI-level MIL models.
+
+---
+
+## 3) Model weights and checkpoints
+
+- **ROI and WSI MIL models:** stored in this repository under `mil_models/`.
+- **Patch model + segmentation model:** hosted on Hugging Face:  
+  https://huggingface.co/yuxinwu/histobcacad/tree/main
+
+---
+
+## 4) Suggested end-to-end workflow (reproducibility guide)
+
+The recommended execution order is:
+
+1. **Run segmentation on WSIs**  
+   Use `segmentation_model/run_wsi_infer.sh` to generate segmentation outputs.
+
+2. **(Optional) SSL finetuning**  
+   Use `ssl_finetune/main_ibot.py` to finetune foundation representations.
+
+3. **Train patch multi-task model with LoRA**  
+   Use `d_swin_4_multi_task/train_lora_with_ft.py`.
+
+4. **Run patch-level testing/comparison**  
+   Use `d_swin_4_multi_task/test_compare.py`.
+
+5. **Extract ROI features**  
+   Run `HistoSSLscaling/extract_roi_features.ipynb`.
+
+6. **Train ROI MIL model**  
+   Run `HistoSSLscaling/mil_roi_model_on_the_fly_lora.ipynb`.
+
+7. **Train/test WSI MIL model**  
+   Run `HistoSSLscaling/mil_wsi_model_on_the_fly_lora.ipynb`.
+
+---
+
+## 5) Practical notes
+
+- Keep file names and paths unchanged to ensure compatibility with existing scripts/notebooks.
+- If you only need inference/evaluation, download required checkpoints first (local `mil_models/` and/or Hugging Face weights).
+- Prefer running each module from the project root unless module-specific instructions indicate otherwise.
+
+---
+
+## 6) Citation / publication status
+
+The study manuscript metadata and full abstract details can be updated here after publication.
