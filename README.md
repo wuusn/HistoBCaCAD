@@ -64,7 +64,6 @@ Use the following scripts/notebooks as the primary entrypoints:
 ### G. WSI-level MIL training/testing
 - **Notebook:** `HistoSSLscaling/mil_wsi_model_on_the_fly_lora.ipynb`
 - **Purpose:** Train and test WSI-level MIL models with saved outputs.
-
 ---
 
 ## 3) Model weights and checkpoints
@@ -132,8 +131,19 @@ Some of the code or environments might be out of date. Please also check these o
 
 
 ---
+## 5) Quick ROI Inference Example
+- **Script:** `HistoSSLscaling/example_roi_inference.py`
+- **Purpose:** Run a standalone quick ROI inference demo (tile feature extraction + ABMIL inference) on `example_rois/` and print predictions.
+- **Example command:**
 
-## 5) Suggested end-to-end workflow
+```bash
+python HistoSSLscaling/example_roi_inference.py --ibot_weights /path/to/ibot_vit_base_pancan.pth
+```
+```bash
+python HistoSSLscaling/example_roi_inference.py --encoder_ckpt /path/to/model-13_ft_lora.pth  --ibot_weights /home/yuxin/Downloads/ibot_vit_base_pancan.pth
+```
+
+## 6) Suggested end-to-end workflow
 
 The recommended execution order is:
 
@@ -160,7 +170,7 @@ The recommended execution order is:
 
 ---
 
-## 6) Practical notes
+## 7) Practical notes
 
 - Legacy/backup notebooks and scripts are archived under `legacy/` subfolders to keep active roots cleaner.
 - If you only need inference/evaluation, download required checkpoints first (local `mil_models/` and/or Hugging Face weights).
