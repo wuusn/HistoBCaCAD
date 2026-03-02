@@ -1,0 +1,173 @@
+addict==2.4.0
+affine==2.4.0
+aliyun-python-sdk-core==2.14.0
+aliyun-python-sdk-kms==2.16.2
+asciitree==0.3.3
+attrs==23.2.0
+boto3==1.34.12
+botocore==1.34.12
+Brotli @ file:///tmp/abs_ecyw11_7ze/croots/recipe/brotli-split_1659616059936/work
+cachetools==5.3.2
+certifi @ file:///croot/certifi_1700501669400/work/certifi
+cffi @ file:///croot/cffi_1700254295673/work
+charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+click==8.1.7
+click-plugins==1.1.1
+cligj==0.7.2
+cloudpickle==3.0.0
+colorama==0.4.6
+contourpy==1.1.1
+crcmod==1.7
+cryptography @ file:///croot/cryptography_1702070282333/work
+ctk-cli==1.5
+cycler==0.12.1
+dask==2023.5.0
+defusedxml==0.7.1
+dicomweb-client==0.59.1
+diskcache==5.6.3
+distributed==2023.5.0
+einops==0.7.0
+fasteners==0.19
+filelock @ file:///croot/filelock_1700591183607/work
+fonttools==4.47.0
+fsspec==2023.12.2
+ftfy==6.1.3
+future==0.18.3
+GDAL==3.9.0
+geojson==3.1.0
+girder-client==3.1.24
+girder-slicer-cli-web==1.5.0
+Glymur==0.12.9.post1
+gmpy2 @ file:///tmp/build/80754af9/gmpy2_1645455532332/work
+greenlet==3.0.3
+histomicstk==1.3.1
+huggingface-hub==0.20.1
+idna @ file:///croot/idna_1666125576474/work
+imagecodecs==2023.3.16
+imageio==2.33.1
+importlib-metadata==7.0.1
+importlib-resources==6.1.1
+Jinja2 @ file:///croot/jinja2_1666908132255/work
+jmespath==0.10.0
+joblib==1.3.2
+jsonschema==4.20.0
+jsonschema-specifications==2023.12.1
+kiwisolver==1.4.5
+large-image==1.26.3
+large-image-source-bioformats==1.26.3
+large-image-source-deepzoom==1.26.3
+large-image-source-dicom==1.26.3
+large-image-source-dummy==1.26.3
+large-image-source-gdal==1.26.3
+large-image-source-mapnik==1.26.3
+large-image-source-multi==1.26.3
+large-image-source-nd2==1.26.3
+large-image-source-ometiff==1.26.3
+large-image-source-openjpeg==1.26.3
+large-image-source-openslide==1.26.3
+large-image-source-pil==1.26.3
+large-image-source-rasterio==1.26.3
+large-image-source-test==1.26.3
+large-image-source-tiff==1.26.3
+large-image-source-tifffile==1.26.3
+large-image-source-vips==1.26.3
+large-image-source-zarr==1.26.3
+lazy_loader==0.3
+locket==1.0.0
+lxml==5.0.0
+mapnik==4.0.0
+Markdown==3.5.1
+markdown-it-py==3.0.0
+MarkupSafe @ file:///croot/markupsafe_1704205993651/work
+matplotlib==3.7.4
+mdurl==0.1.2
+mkl-fft @ file:///croot/mkl_fft_1695058164594/work
+mkl-random @ file:///croot/mkl_random_1695059800811/work
+mkl-service==2.4.0
+mmcv==2.1.0
+mmcv-full==1.3.14
+mmengine==0.10.2
+model-index==0.1.11
+mpmath @ file:///croot/mpmath_1690848262763/work
+msgpack==1.0.7
+nd2==0.8.1
+networkx @ file:///croot/networkx_1690561992265/work
+nimfa==1.4.0
+numcodecs==0.12.1
+numpy @ file:///work/mkl/numpy_and_numpy_base_1682953417311/work
+opencv-python==4.9.0.80
+opencv-python-headless==4.9.0.80
+opendatalab==0.0.10
+openmim==0.3.9
+openslide-python==1.3.1
+openxlab==0.0.32
+ordered-set==4.1.0
+oss2==2.17.0
+packaging==23.2
+palettable==3.3.3
+pandas==2.0.3
+partd==1.4.1
+Pillow @ file:///croot/pillow_1696580024257/work
+pkgconfig==1.5.5
+pkgutil_resolve_name==1.3.10
+platformdirs==4.1.0
+prettytable==3.9.0
+psutil==5.9.7
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pycryptodome==3.19.1
+pydicom==2.4.4
+Pygments==2.17.2
+pylibtiff==0.6.1.1
+pyOpenSSL @ file:///croot/pyopenssl_1690223430423/work
+pyparsing==3.1.1
+pyproj==3.5.0
+PySocks @ file:///tmp/build/80754af9/pysocks_1605305779399/work
+python-bioformats==4.0.7.1
+python-dateutil==2.8.2
+python-javabridge==4.0.3
+pytz==2023.3.post1
+pyvips==2.2.1
+PyWavelets==1.4.1
+PyYAML @ file:///croot/pyyaml_1698096049011/work
+rasterio==1.3.9
+referencing==0.32.0
+regex==2023.12.25
+requests==2.28.2
+requests-toolbelt==1.0.0
+resource-backed-dask-array==0.1.0
+retrying==1.3.4
+rich==13.4.2
+rpds-py==0.16.2
+s3transfer==0.10.0
+safetensors==0.4.1
+scikit-image==0.21.0
+scikit-learn==1.3.2
+scipy==1.10.1
+shapely==2.0.2
+six==1.16.0
+snuggs==1.4.7
+sortedcontainers==2.4.0
+SQLAlchemy==2.0.25
+sympy @ file:///croot/sympy_1701397643339/work
+tabulate==0.9.0
+tblib==3.0.0
+termcolor==2.4.0
+threadpoolctl==3.2.0
+tifffile==2023.7.10
+tifftools==1.4.0
+timm==0.9.12
+tomli==2.0.1
+toolz==0.12.0
+torch==1.7.0
+torchvision==0.8.1
+tornado==6.4
+tqdm==4.65.2
+typing_extensions @ file:///croot/typing_extensions_1690297465030/work
+tzdata==2023.4
+urllib3 @ file:///croot/urllib3_1698257533958/work
+wcwidth==0.2.12
+wsidicom==0.13.0
+yapf==0.40.1
+zarr==2.16.1
+zict==3.0.0
+zipp==3.17.0
