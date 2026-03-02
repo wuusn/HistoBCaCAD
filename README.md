@@ -57,9 +57,9 @@ Use the following scripts/notebooks as the primary entrypoints:
 - **Notebook:** `HistoSSLscaling/extract_roi_features.ipynb`
 - **Purpose:** Extract ROI features used by downstream MIL models.
 
-### F. ROI-level MIL training
-- **Notebook:** `HistoSSLscaling/mil_roi_model_on_the_fly_lora.ipynb`
-- **Purpose:** Train ROI-level MIL models (with on-the-fly LoRA workflow).
+### F. ROI-level MIL training (legacy)
+- **Notebook:** `HistoSSLscaling/legacy/mil_roi_model_on_the_fly_lora.ipynb`
+- **Purpose:** Archived ROI-level MIL training notebook (on-the-fly LoRA workflow).
 
 ### G. WSI-level MIL training/testing
 - **Notebook:** `HistoSSLscaling/mil_wsi_model_on_the_fly_lora.ipynb`
@@ -141,8 +141,8 @@ The recommended execution order is:
 5. **Extract ROI features**  
    Run `HistoSSLscaling/extract_roi_features.ipynb`.
 
-6. **Train ROI MIL model**  
-   Run `HistoSSLscaling/mil_roi_model_on_the_fly_lora.ipynb`.
+6. **Train ROI MIL model (legacy notebook)**
+   Run `HistoSSLscaling/legacy/mil_roi_model_on_the_fly_lora.ipynb`.
 
 7. **Train/test WSI MIL model**  
    Run `HistoSSLscaling/mil_wsi_model_on_the_fly_lora.ipynb`.
@@ -151,7 +151,7 @@ The recommended execution order is:
 
 ## 6) Practical notes
 
-- Keep file names and paths unchanged to ensure compatibility with existing scripts/notebooks.
+- Legacy/backup notebooks and scripts are archived under `legacy/` subfolders to keep active roots cleaner.
 - If you only need inference/evaluation, download required checkpoints first (local `mil_models/` and/or Hugging Face weights).
 - Prefer running each module from the project root unless module-specific instructions indicate otherwise.
 - Use the segmentation environment for `segmentation_model/*` tasks and the root environment for the remaining modules.
