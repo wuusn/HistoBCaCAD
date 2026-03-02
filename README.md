@@ -65,6 +65,16 @@ Use the following scripts/notebooks as the primary entrypoints:
 - **Notebook:** `HistoSSLscaling/mil_wsi_model_on_the_fly_lora.ipynb`
 - **Purpose:** Train and test WSI-level MIL models with saved outputs.
 
+
+### H. Quick ROI inference example
+- **Script:** `HistoSSLscaling/example_roi_inference.py`
+- **Purpose:** Run a standalone quick ROI inference demo (tile feature extraction + ABMIL inference) on `example_rois/` and print predictions to stdout.
+- **Example command:**
+
+```bash
+python HistoSSLscaling/example_roi_inference.py --ibot_weights /path/to/ibot_vit_base_pancan.pth
+```
+
 ---
 
 ## 3) Model weights and checkpoints
