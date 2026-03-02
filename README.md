@@ -170,15 +170,6 @@ The recommended execution order is:
 
 ---
 
-## 7) Practical notes
-
-- Legacy/backup notebooks and scripts are archived under `legacy/` subfolders to keep active roots cleaner.
-- If you only need inference/evaluation, download required checkpoints first (local `mil_models/` and/or Hugging Face weights).
-- Prefer running each module from the project root unless module-specific instructions indicate otherwise.
-- Use the segmentation environment for `segmentation_model/*` tasks and the root environment for the remaining modules.
-
----
-
 ## 7) Citation / publication status
 
 The study manuscript metadata and full abstract details can be updated here after publication.
