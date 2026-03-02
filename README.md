@@ -58,12 +58,12 @@ Use the following scripts/notebooks as the primary entrypoints:
 - **Purpose:** Extract ROI features used by downstream MIL models.
 
 ### F. ROI-level MIL training (legacy)
-- **Notebook:** `HistoSSLscaling/legacy/mil_roi_model_on_the_fly_lora.ipynb`
-- **Purpose:** Archived ROI-level MIL training notebook (on-the-fly LoRA workflow).
+- **Notebook:** `HistoSSLscaling/mil_roi_model_on_the_fly_lora.ipynb`
+- **Purpose:** Archived ROI-level MIL training/testing notebook with saved outputs.
 
 ### G. WSI-level MIL training/testing
 - **Notebook:** `HistoSSLscaling/mil_wsi_model_on_the_fly_lora.ipynb`
-- **Purpose:** Train and test WSI-level MIL models.
+- **Purpose:** Train and test WSI-level MIL models with saved outputs.
 
 ---
 
@@ -75,7 +75,9 @@ Use the following scripts/notebooks as the primary entrypoints:
 
 ---
 
-## 4) Reproducible environment setup
+## 4) Environment setup
+
+All the training and experiments were done in a workstation with Rocky Linux 9.4, 2 x GeForce RTX 4090, CUDA Version 12.2. 
 
 This repository currently uses **two environment tracks**:
 
@@ -84,7 +86,7 @@ This repository currently uses **two environment tracks**:
 
 ### 4.1 Segmentation model environment
 
-Environment files for segmentation are in the subfolder:
+Environment files for segmentation are in the subfolder with Python 3.8.18:
 - Conda: `segmentation_model/environment_conda.yml`
 - Pip: `segmentation_model/requirements.txt`
 
@@ -105,7 +107,7 @@ bash segmentation_model/run_wsi_infer.sh
 
 ### 4.2 Root environment for the rest of the pipeline
 
-For SSL finetuning, LoRA/patch training/testing, ROI feature extraction, and ROI/WSI MIL notebooks, use root-level environment files:
+For SSL finetuning, LoRA/patch training/testing, ROI feature extraction, and ROI/WSI MIL notebooks, use root-level environment files, with Python 3.8.3:
 - Conda: `environment_conda.yml`
 - Pip: `requirements_pip.txt`
 
@@ -120,16 +122,24 @@ pip install -r requirements_pip.txt
 
 > If your local environment name differs, keep using the environment name defined in your local conda file.
 
+### 4.3 Original projects used in this work
+Some of the code or environments might be out of date. Please also check these original repos used in our project:  
+[mmsegmentation](https://github.com/open-mmlab/mmsegmentation)  
+[mmpretrain](https://github.com/open-mmlab/mmpretrain)  
+[iBOT](https://github.com/bytedance/ibot)  
+[HistoSSLscaling](https://github.com/owkin/HistoSSLscaling)
+
+
 ---
 
-## 5) Suggested end-to-end workflow (reproducibility guide)
+## 5) Suggested end-to-end workflow
 
 The recommended execution order is:
 
 1. **Run segmentation on WSIs**  
    Use `segmentation_model/run_wsi_infer.sh` to generate segmentation outputs.
 
-2. **(Optional) SSL finetuning**  
+2. **SSL finetuning**  
    Use `ssl_finetune/main_ibot.py` to finetune foundation representations.
 
 3. **Train patch multi-task model with LoRA**  
@@ -141,7 +151,7 @@ The recommended execution order is:
 5. **Extract ROI features**  
    Run `HistoSSLscaling/extract_roi_features.ipynb`.
 
-6. **Train ROI MIL model (legacy notebook)**
+6. **Train ROI MIL model**
    Run `HistoSSLscaling/legacy/mil_roi_model_on_the_fly_lora.ipynb`.
 
 7. **Train/test WSI MIL model**  
