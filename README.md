@@ -6,9 +6,6 @@ This repository contains the codebase used for the HistoBCaCAD pipeline, includi
 - Multi-task patch-level finetuning/testing,
 - ROI feature extraction and MIL-based ROI/WSI modeling.
 
-> **Status note**
-> This README is focused on practical usage and reproducibility of the current repository layout. File names and paths below match the current codebase.
-
 ---
 
 ## 1) Repository structure (what each module is for)
@@ -33,7 +30,75 @@ This repository contains the codebase used for the HistoBCaCAD pipeline, includi
 
 ---
 
-## 2) Main entrypoints
+
+## 2) Input data directories and expected structure
+
+
+> **Important:** Large training datasets are **not** included in this repository. You must point scripts to your local data paths.
+
+### A. WSI segmentation input (for `segmentation_model/run_wsi_infer.sh`)
+
+The segmentation runner expects:
+- `wsi_dir`: directory containing whole-slide files (default extension used in script is `.svs`).
+- `save_dir`: directory where per-scale segmentation outputs are written.
+- `merge_dir`: directory for merged multi-resolution outputs.
+
+Example layout:
+
+```text
+/path/to/wsi_dir/
+  case_001.svs
+  case_002.svs
+  ...
+```
+
+### B. ROI image input (for quick inference demo)
+
+`HistoSSLscaling/example_roi_inference.py` expects a directory of ROI image files (png/jpg/tif/etc.) via `--roi_dir`.
+The script scans files directly under that folder.
+
+Example layout:
+
+```text
+/path/to/roi_dir/
+  roi_0001.png
+  roi_0002.png
+  roi_0003.tif
+  ...
+```
+
+### C. ROI dataset layout used by legacy feature extraction workflow
+
+The script `d_swin_4_multi_task/lora_feature_extraction.py` contains cohort-specific structure, may adjust accordingly to your data:
+
+Example layout:
+
+```text
+/path/to/data_root/
+  bjszhp/
+    normal/
+      xxx.png
+    dcis1/
+      yyy.png
+  qduh/
+    test/
+      roi_a.png
+      roi_b.png
+  shsu/
+    test/
+      roi_c.png
+```
+
+Output feature files are saved as `.npy` under `save_root/<cohort>/test/...`.
+
+### D. MIL model inputs
+
+- Pretrained MIL checkpoints used by the quick ROI demo are expected under `mil_models/` (default: `mil_models/abmil_roi.pth`).
+- ROI/WSI MIL notebooks in `HistoSSLscaling/` expect extracted feature directories prepared in previous steps.
+
+---
+
+## 3) Main entrypoints
 
 Use the following scripts/notebooks as the primary entrypoints:
 
@@ -66,7 +131,7 @@ Use the following scripts/notebooks as the primary entrypoints:
 - **Purpose:** Train and test WSI-level MIL models with saved outputs.
 ---
 
-## 3) Model weights and checkpoints
+## 4) Model weights and checkpoints
 
 - **ROI and WSI MIL models:** stored in this repository under `mil_models/`.
 - **Patch model + segmentation model:** hosted on Hugging Face:  
@@ -75,7 +140,7 @@ Use the following scripts/notebooks as the primary entrypoints:
 
 ---
 
-## 4) Environment setup
+## 5) Environment setup
 
 All the training and experiments were done in a workstation with Rocky Linux 9.4, 2 x GeForce RTX 4090, CUDA Version 12.2. 
 
@@ -84,7 +149,7 @@ This repository currently uses **two environment tracks**:
 1. **Segmentation environment (inside `segmentation_model/`)**
 2. **Non-segmentation environment (root-level, used by SSL / patch / ROI / WSI workflows)**
 
-### 4.1 Segmentation model environment
+### 5.1 Segmentation model environment
 
 Environment files for segmentation are in the subfolder with Python 3.8.18:
 - Conda: `segmentation_model/environment_conda.yml`
@@ -105,7 +170,7 @@ Then run segmentation inference via:
 bash segmentation_model/run_wsi_infer.sh
 ```
 
-### 4.2 Root environment for the rest of the pipeline
+### 5.2 Root environment for the rest of the pipeline
 
 For SSL finetuning, LoRA/patch training/testing, ROI feature extraction, and ROI/WSI MIL notebooks, use root-level environment files, with Python 3.8.3:
 - Conda: `environment_conda.yml`
@@ -122,7 +187,7 @@ pip install -r requirements_pip.txt
 
 > If your local environment name differs, keep using the environment name defined in your local conda file.
 
-### 4.3 Original projects used in this work
+### 5.3 Original projects used in this work
 To reproduce the environment, we kept most of the files from the original projects at the time we ran the experiments.
 Some of the code or environments might be out of date. Please also check these original repos used in our project:  
 [mmsegmentation](https://github.com/open-mmlab/mmsegmentation)  
@@ -132,7 +197,7 @@ Some of the code or environments might be out of date. Please also check these o
 
 
 ---
-## 5) Quick ROI Inference Example
+## 6) Quick ROI Inference Example
 - **Script:** `HistoSSLscaling/example_roi_inference.py`
 - **Purpose:** Run a standalone quick ROI inference demo (tile feature extraction + ABMIL inference) on `example_rois/` and print predictions.
 - **Example command:**
@@ -145,7 +210,7 @@ with our feature extraction:
 python HistoSSLscaling/example_roi_inference.py --encoder_ckpt /path/to/model-13_ft_lora.pth  --ibot_weights /home/yuxin/Downloads/ibot_vit_base_pancan.pth
 ```
 
-## 6) Suggested end-to-end workflow
+## 7) Suggested end-to-end workflow
 
 The recommended execution order is:
 
@@ -172,6 +237,6 @@ The recommended execution order is:
 
 ---
 
-## 7) Citation / publication status
+## 8) Citation / publication status
 
 The study manuscript metadata and full abstract details can be updated here after publication.
